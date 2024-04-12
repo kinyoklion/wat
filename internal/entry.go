@@ -9,14 +9,23 @@ var (
 	ImportanceCritical  Importance = "critical"
 )
 
+type State string
+
+var (
+	StateTodo State = "todo"
+	StateDone State = "done"
+)
+
 type BasicDate struct {
-	day   int
-	month int
-	year  int
+	Day   int `json:"day"`
+	Month int `json:"month"`
+	Year  int `json:"year"`
 }
 
 type Entry struct {
-	details    string
-	date       BasicDate
-	importance Importance
+	ID         string     `json:"id"`
+	Details    string     `json:"details"`
+	Date       BasicDate  `json:"date"`
+	Importance Importance `json:"importance"`
+	State      State      `json:"state"`
 }
