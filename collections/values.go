@@ -1,4 +1,4 @@
-package wat
+package collections
 
 func Values[Tk comparable, Tv any](input map[Tk]Tv) []Tv {
 	list := make([]Tv, len(input))

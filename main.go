@@ -1,16 +1,27 @@
 package main
 
 import (
-	"log"
-	internal "wat/internal"
+	"fmt"
+	"slices"
+	"wat/algorithms"
+	wat "wat/internal"
 )
 
 func main() {
-	form, _ := internal.EntryForm()
+	distance := algorithms.LevenshteinDistance("sitting", "kitten")
+	fmt.Println("Distance:", distance)
 
-	err := form.Run()
+	distance = algorithms.LevenshteinDistance("Saturday", "Sunday")
+	fmt.Println("Distance:", distance)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	a := wat.Entry{Details: "sitting"}
+	b := wat.Entry{Details: "kitten"}
+
+	items := []wat.Entry{a, b}
+	slices.SortFunc(items, func(a, b wat.Entry) int {
+		return algorithms.LevenshteinCmp("sitting", a.Details, b.Details)
+	})
+
+	fmt.Println(items)
+
 }
